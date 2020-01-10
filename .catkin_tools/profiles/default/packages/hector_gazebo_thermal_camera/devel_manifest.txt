@@ -1,0 +1,7 @@
+hector_gazebo/hector_gazebo_thermal_camera
+/home/mskrzypk/ws_thesis/devel/.private/hector_gazebo_thermal_camera/cmake.lock /home/mskrzypk/ws_thesis/devel/./cmake.lock
+/home/mskrzypk/ws_thesis/devel/.private/hector_gazebo_thermal_camera/lib/libgazebo_ros_thermal_camera.so /home/mskrzypk/ws_thesis/devel/lib/libgazebo_ros_thermal_camera.so
+/home/mskrzypk/ws_thesis/devel/.private/hector_gazebo_thermal_camera/lib/libgazebo_ros_thermal_depth_camera.so /home/mskrzypk/ws_thesis/devel/lib/libgazebo_ros_thermal_depth_camera.so
+/home/mskrzypk/ws_thesis/devel/.private/hector_gazebo_thermal_camera/lib/pkgconfig/hector_gazebo_thermal_camera.pc /home/mskrzypk/ws_thesis/devel/lib/pkgconfig/hector_gazebo_thermal_camera.pc
+/home/mskrzypk/ws_thesis/devel/.private/hector_gazebo_thermal_camera/share/hector_gazebo_thermal_camera/cmake/hector_gazebo_thermal_cameraConfig.cmake /home/mskrzypk/ws_thesis/devel/share/hector_gazebo_thermal_camera/cmake/hector_gazebo_thermal_cameraConfig.cmake
+/home/mskrzypk/ws_thesis/devel/.private/hector_gazebo_thermal_camera/share/hector_gazebo_thermal_camera/cmake/hector_gazebo_thermal_cameraConfig-version.cmake /home/mskrzypk/ws_thesis/devel/share/hector_gazebo_thermal_camera/cmake/hector_gazebo_thermal_cameraConfig-version.cmake

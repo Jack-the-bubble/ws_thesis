@@ -1,0 +1,6 @@
+thesis-omnivelma/omnivelma/src/gramofon
+/home/mskrzypk/ws_thesis/devel/.private/gramofon/cmake.lock /home/mskrzypk/ws_thesis/devel/./cmake.lock
+/home/mskrzypk/ws_thesis/devel/.private/gramofon/lib/pkgconfig/gramofon.pc /home/mskrzypk/ws_thesis/devel/lib/pkgconfig/gramofon.pc
+/home/mskrzypk/ws_thesis/devel/.private/gramofon/lib/gramofon/gramofon /home/mskrzypk/ws_thesis/devel/lib/gramofon/gramofon
+/home/mskrzypk/ws_thesis/devel/.private/gramofon/share/gramofon/cmake/gramofonConfig.cmake /home/mskrzypk/ws_thesis/devel/share/gramofon/cmake/gramofonConfig.cmake
+/home/mskrzypk/ws_thesis/devel/.private/gramofon/share/gramofon/cmake/gramofonConfig-version.cmake /home/mskrzypk/ws_thesis/devel/share/gramofon/cmake/gramofonConfig-version.cmake

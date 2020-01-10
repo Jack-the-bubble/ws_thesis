@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="map_file" default="my_world"/>
+    <arg name="octomap_file" default="$(find inzynier_v1)/maps/$(arg map_file).bt"/>
+
+    <!--start octomap server-->
+<!--    <include file="$(find velma_common)/launch/octomap_server.launch">-->
+<!--    </include>-->
+
+    <!--start offline octomap    -->
+    <node name="om_server" pkg="octomap_server" type="octomap_server_node" output="screen" args="$(arg octomap_file)" />
+</launch>

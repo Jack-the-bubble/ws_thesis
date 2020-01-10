@@ -1,0 +1,5 @@
+inzynier_v1
+/home/mskrzypk/ws_thesis/devel/.private/inzynier_v1/cmake.lock /home/mskrzypk/ws_thesis/devel/./cmake.lock
+/home/mskrzypk/ws_thesis/devel/.private/inzynier_v1/lib/pkgconfig/inzynier_v1.pc /home/mskrzypk/ws_thesis/devel/lib/pkgconfig/inzynier_v1.pc
+/home/mskrzypk/ws_thesis/devel/.private/inzynier_v1/share/inzynier_v1/cmake/inzynier_v1Config.cmake /home/mskrzypk/ws_thesis/devel/share/inzynier_v1/cmake/inzynier_v1Config.cmake
+/home/mskrzypk/ws_thesis/devel/.private/inzynier_v1/share/inzynier_v1/cmake/inzynier_v1Config-version.cmake /home/mskrzypk/ws_thesis/devel/share/inzynier_v1/cmake/inzynier_v1Config-version.cmake

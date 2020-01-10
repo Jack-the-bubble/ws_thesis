@@ -1,0 +1,6 @@
+thesis-omnivelma/omnivelma/src/monokl
+/home/mskrzypk/ws_thesis/devel/.private/monokl/cmake.lock /home/mskrzypk/ws_thesis/devel/./cmake.lock
+/home/mskrzypk/ws_thesis/devel/.private/monokl/lib/libmonokl.so /home/mskrzypk/ws_thesis/devel/lib/libmonokl.so
+/home/mskrzypk/ws_thesis/devel/.private/monokl/lib/pkgconfig/monokl.pc /home/mskrzypk/ws_thesis/devel/lib/pkgconfig/monokl.pc
+/home/mskrzypk/ws_thesis/devel/.private/monokl/share/monokl/cmake/monoklConfig.cmake /home/mskrzypk/ws_thesis/devel/share/monokl/cmake/monoklConfig.cmake
+/home/mskrzypk/ws_thesis/devel/.private/monokl/share/monokl/cmake/monoklConfig-version.cmake /home/mskrzypk/ws_thesis/devel/share/monokl/cmake/monoklConfig-version.cmake

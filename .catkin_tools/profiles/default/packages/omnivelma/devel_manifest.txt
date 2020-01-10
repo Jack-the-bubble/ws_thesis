@@ -1,0 +1,7 @@
+thesis-omnivelma/omnivelma/src/omnivelma
+/home/mskrzypk/ws_thesis/devel/.private/omnivelma/cmake.lock /home/mskrzypk/ws_thesis/devel/./cmake.lock
+/home/mskrzypk/ws_thesis/devel/.private/omnivelma/lib/libmonokl_chain.so /home/mskrzypk/ws_thesis/devel/lib/libmonokl_chain.so
+/home/mskrzypk/ws_thesis/devel/.private/omnivelma/lib/libomnivelma.so /home/mskrzypk/ws_thesis/devel/lib/libomnivelma.so
+/home/mskrzypk/ws_thesis/devel/.private/omnivelma/lib/pkgconfig/omnivelma.pc /home/mskrzypk/ws_thesis/devel/lib/pkgconfig/omnivelma.pc
+/home/mskrzypk/ws_thesis/devel/.private/omnivelma/share/omnivelma/cmake/omnivelmaConfig.cmake /home/mskrzypk/ws_thesis/devel/share/omnivelma/cmake/omnivelmaConfig.cmake
+/home/mskrzypk/ws_thesis/devel/.private/omnivelma/share/omnivelma/cmake/omnivelmaConfig-version.cmake /home/mskrzypk/ws_thesis/devel/share/omnivelma/cmake/omnivelmaConfig-version.cmake

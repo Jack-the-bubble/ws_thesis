@@ -1,0 +1,6 @@
+thesis-omnivelma/omnivelma/src/pantofelek
+/home/mskrzypk/ws_thesis/devel/.private/pantofelek/cmake.lock /home/mskrzypk/ws_thesis/devel/./cmake.lock
+/home/mskrzypk/ws_thesis/devel/.private/pantofelek/lib/pkgconfig/pantofelek.pc /home/mskrzypk/ws_thesis/devel/lib/pkgconfig/pantofelek.pc
+/home/mskrzypk/ws_thesis/devel/.private/pantofelek/lib/pantofelek/pantofelek /home/mskrzypk/ws_thesis/devel/lib/pantofelek/pantofelek
+/home/mskrzypk/ws_thesis/devel/.private/pantofelek/share/pantofelek/cmake/pantofelekConfig.cmake /home/mskrzypk/ws_thesis/devel/share/pantofelek/cmake/pantofelekConfig.cmake
+/home/mskrzypk/ws_thesis/devel/.private/pantofelek/share/pantofelek/cmake/pantofelekConfig-version.cmake /home/mskrzypk/ws_thesis/devel/share/pantofelek/cmake/pantofelekConfig-version.cmake

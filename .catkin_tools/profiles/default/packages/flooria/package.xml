@@ -1,0 +1,19 @@
+<package format="2">
+    <name>flooria</name>
+    <version>1.0.0</version>
+    <description>Podłoże ze zmiennym współczynnikiem tarcia</description>
+	
+    <maintainer email="antyradek@protonmail.com">Antyradek</maintainer>
+	
+    <license>GPLv3</license>
+	
+    <buildtool_depend>catkin</buildtool_depend>
+	
+    <depend>gazebo_ros</depend>
+	<depend>omnivelma_msgs</depend>
+	<depend>roscpp</depend>
+	
+    <export>
+        <gazebo_ros plugin_path="${prefix}/lib" gazebo_media_path="${prefix}/.." />
+    </export>
+</package>

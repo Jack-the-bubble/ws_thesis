@@ -1,0 +1,6 @@
+thesis-omnivelma/omnivelma/src/dziadzio
+/home/mskrzypk/ws_thesis/devel/.private/dziadzio/cmake.lock /home/mskrzypk/ws_thesis/devel/./cmake.lock
+/home/mskrzypk/ws_thesis/devel/.private/dziadzio/lib/pkgconfig/dziadzio.pc /home/mskrzypk/ws_thesis/devel/lib/pkgconfig/dziadzio.pc
+/home/mskrzypk/ws_thesis/devel/.private/dziadzio/lib/dziadzio/dziadzio /home/mskrzypk/ws_thesis/devel/lib/dziadzio/dziadzio
+/home/mskrzypk/ws_thesis/devel/.private/dziadzio/share/dziadzio/cmake/dziadzioConfig.cmake /home/mskrzypk/ws_thesis/devel/share/dziadzio/cmake/dziadzioConfig.cmake
+/home/mskrzypk/ws_thesis/devel/.private/dziadzio/share/dziadzio/cmake/dziadzioConfig-version.cmake /home/mskrzypk/ws_thesis/devel/share/dziadzio/cmake/dziadzioConfig-version.cmake

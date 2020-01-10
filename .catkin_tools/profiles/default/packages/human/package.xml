@@ -1,0 +1,23 @@
+<package format="2">
+	<name>human</name>
+	<version>1.0.0</version>
+	<description>Plugin odpowiedzialny za ruch czlowieka po zadaniu predkosci na odpowiednim temacie</description>
+	
+	<maintainer email="within12@gmail.com">Totalq</maintainer>
+	
+	<license>GPLv3</license>
+	
+	<buildtool_depend>catkin</buildtool_depend>
+	
+	<depend>gazebo_ros</depend>
+	<depend>std_msgs</depend>
+    <depend>roscpp</depend>
+	<depend>geometry_msgs</depend>
+	<depend>nav_msgs</depend>
+	<depend>tf2_ros</depend>
+	<depend>tf</depend>
+	
+	<export>
+		<gazebo_ros plugin_path="${prefix}/lib" gazebo_media_path="${prefix}" />
+	</export>
+</package>

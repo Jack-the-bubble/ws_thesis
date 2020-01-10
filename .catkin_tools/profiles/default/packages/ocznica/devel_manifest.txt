@@ -1,0 +1,6 @@
+thesis-omnivelma/omnivelma/src/ocznica
+/home/mskrzypk/ws_thesis/devel/.private/ocznica/cmake.lock /home/mskrzypk/ws_thesis/devel/./cmake.lock
+/home/mskrzypk/ws_thesis/devel/.private/ocznica/lib/libocznica.so /home/mskrzypk/ws_thesis/devel/lib/libocznica.so
+/home/mskrzypk/ws_thesis/devel/.private/ocznica/lib/pkgconfig/ocznica.pc /home/mskrzypk/ws_thesis/devel/lib/pkgconfig/ocznica.pc
+/home/mskrzypk/ws_thesis/devel/.private/ocznica/share/ocznica/cmake/ocznicaConfig.cmake /home/mskrzypk/ws_thesis/devel/share/ocznica/cmake/ocznicaConfig.cmake
+/home/mskrzypk/ws_thesis/devel/.private/ocznica/share/ocznica/cmake/ocznicaConfig-version.cmake /home/mskrzypk/ws_thesis/devel/share/ocznica/cmake/ocznicaConfig-version.cmake

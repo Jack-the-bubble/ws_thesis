@@ -1,0 +1,6 @@
+thesis-omnivelma/omnivelma/src/wewucho
+/home/mskrzypk/ws_thesis/devel/.private/wewucho/cmake.lock /home/mskrzypk/ws_thesis/devel/./cmake.lock
+/home/mskrzypk/ws_thesis/devel/.private/wewucho/lib/libwewucho.so /home/mskrzypk/ws_thesis/devel/lib/libwewucho.so
+/home/mskrzypk/ws_thesis/devel/.private/wewucho/lib/pkgconfig/wewucho.pc /home/mskrzypk/ws_thesis/devel/lib/pkgconfig/wewucho.pc
+/home/mskrzypk/ws_thesis/devel/.private/wewucho/share/wewucho/cmake/wewuchoConfig.cmake /home/mskrzypk/ws_thesis/devel/share/wewucho/cmake/wewuchoConfig.cmake
+/home/mskrzypk/ws_thesis/devel/.private/wewucho/share/wewucho/cmake/wewuchoConfig-version.cmake /home/mskrzypk/ws_thesis/devel/share/wewucho/cmake/wewuchoConfig-version.cmake

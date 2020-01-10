@@ -1,0 +1,60 @@
+
+<launch>
+    <arg name="map_name" default="my_world_2"/>
+    <arg name="screen" default="false"/>
+    <arg name="jar_link" default="jar::link"/>
+    <arg name="jar_id" default="jar"/>
+    <arg name="tab_0_link" default="table::link"/>
+    <arg name="tab_0_id" default="tab_0"/>
+    <arg name="tab_1_link" default="table_clone::link"/>
+    <arg name="tab_1_id" default="tab_1"/>
+
+<!--base launch to start simulation-->
+
+
+<!--start octomap server-->
+    <!-- <include file="$(find velma_common)/launch/octomap_server.launch">
+    	<remap from="octomap_binary" to="$(find stero_velma)/maps/first_map.bt"/>
+    </include> -->
+
+<!--start offline octomap    -->
+<!--    <include file="$(find velma_common)/launch/octomap_offline_server.launch">-->
+<!--        <arg name="octomap_file" value="$(find stero_velma)/maps/$(arg map_name).bt"/>-->
+<!--&lt;!&ndash;        <arg name="octomap_file" value="/home/ig-88/ws_stero_velma/src/stero_velma/maps/first_map.bt&ndash;&gt;-->
+<!--"/>-->
+<!--    </include>-->
+
+<!--start the planner-->
+    <!--<include file="$(find velma_ros_plugin)/launch/velma_planner.launch">
+    </include>-->
+
+
+
+<!--start publishing tf messages of jar and tables-->
+    <include file="$(find rcprg_gazebo_utils)/launch/gazebo_publish_ros_tf_object.launch">
+        <arg name="link_name" value="$(arg jar_link)"/>
+        <arg name="frame_id" value="$(arg jar_id)"/>
+    </include>
+    <include file="$(find rcprg_gazebo_utils)/launch/gazebo_publish_ros_tf_object.launch">
+        <arg name="link_name" value="$(arg tab_0_link)"/>
+        <arg name="frame_id" value="$(arg tab_0_id)"/>
+    </include>
+    <include file="$(find rcprg_gazebo_utils)/launch/gazebo_publish_ros_tf_object.launch">
+        <arg name="link_name" value="$(arg tab_1_link)"/>
+        <arg name="frame_id" value="$(arg tab_1_id)"/>
+    </include>
+<!--start gazebo client-->
+    <include file="$(find rcprg_gazebo_utils)/launch/gazebo_client.launch">
+    </include>
+
+
+<!--start rviz-->
+    <node name="run_rviz" pkg="rcprg_ros_utils" type="run_rviz.sh"/>
+
+<!--show reachability-->
+    <include file="$(find velma_common)/launch/show_reachability_range.launch">
+    </include>
+
+
+
+</launch>

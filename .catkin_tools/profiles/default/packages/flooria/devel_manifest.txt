@@ -1,0 +1,6 @@
+thesis-omnivelma/omnivelma/src/flooria
+/home/mskrzypk/ws_thesis/devel/.private/flooria/cmake.lock /home/mskrzypk/ws_thesis/devel/./cmake.lock
+/home/mskrzypk/ws_thesis/devel/.private/flooria/lib/libflooria.so /home/mskrzypk/ws_thesis/devel/lib/libflooria.so
+/home/mskrzypk/ws_thesis/devel/.private/flooria/lib/pkgconfig/flooria.pc /home/mskrzypk/ws_thesis/devel/lib/pkgconfig/flooria.pc
+/home/mskrzypk/ws_thesis/devel/.private/flooria/share/flooria/cmake/flooriaConfig.cmake /home/mskrzypk/ws_thesis/devel/share/flooria/cmake/flooriaConfig.cmake
+/home/mskrzypk/ws_thesis/devel/.private/flooria/share/flooria/cmake/flooriaConfig-version.cmake /home/mskrzypk/ws_thesis/devel/share/flooria/cmake/flooriaConfig-version.cmake
