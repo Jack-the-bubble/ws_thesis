@@ -1,0 +1,32 @@
+<launch>
+	<arg name="world_name" default="$(find inzynier_v1)/data/gazebo/worlds/simple_test_world.world" />
+	<arg name="map_name" default="$(find inzynier_v1)/maps/simple_test_map.yaml" />
+
+	<!-- launch omnivelma simulation -->
+	<include file="$(find velma_common)/launch/velma_system.launch">
+		<arg name="world_name" value="$(arg world_name)" />
+	</include>
+
+	<!-- static map -> odom tf publisher -->
+	<node name="map_odom_tf_publisher" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 map odom 10" />
+
+	<!-- run map server -->
+	<node name="map_server" pkg="map_server" type="map_server"  args="$(arg map_name)"/>
+
+
+	<include file="$(find rcprg_gazebo_utils)/launch/gazebo_client.launch">
+
+	</include>
+
+	<node name="rviz" pkg="rviz" type="rviz"/>
+
+	<!-- run planner with configuration -->
+	<!-- <node name="velmobil_planner" pkg="omnivelma_driver" type="omniplanner" output="screen"> -->
+		<!-- <rosparam file="$(find omnivelma_driver)/params/global_costmap.yaml" command="load" ns="global_costmap" /> -->
+		<!-- <rosparam file="$(find omnivelma_driver)/params/local_costmap.yaml" command="load" ns="local_costmap" /> -->
+		<!-- <rosparam file="$(find omnivelma_driver)/params/global_planner.yaml" command="load" ns ="global_planner" /> -->
+		<!-- <rosparam file="$(find omnivelma_driver)/params/local_planner.yaml" command="load" ns ="local_planner" /> -->
+	<!-- </node> -->
+
+	<!-- <node name="object_markers" pkg="omnivelma_driver" type="object_marker" output="screen" /> -->
+</launch>
