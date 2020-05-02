@@ -9,6 +9,9 @@ class OdomError:
     def __init__(self):
         self.calculated_pose = Odometry()
         self.real_pose = GetModelStateResponse()
+        self.abs_x_err = 0
+        self.abs_y_err = 0
+        self.abs_theta_err = 0
 
     def calc_callback(self, odom):
         self.calculated_pose = odom
@@ -18,13 +21,15 @@ class OdomError:
 
     def abs_error_x(self):
         if self.calculated_pose and self.real_pose:
-            return abs(self.calculated_pose.pose.pose.position.x - self.real_pose.pose.position.x)
+            self.abs_x_err = abs(self.calculated_pose.pose.pose.position.x - self.real_pose.pose.position.x)
+            return self.abs_x_err
         else:
             return ""
 
     def abs_error_y(self):
         if self.calculated_pose and self.real_pose:
-            return abs(self.calculated_pose.pose.pose.position.y - self.real_pose.pose.position.y)
+            self.abs_y_err = abs(self.calculated_pose.pose.pose.position.y - self.real_pose.pose.position.y)
+            return self.abs_y_err
         else:
             return ""
 
@@ -36,7 +41,8 @@ class OdomError:
             real_quat = [self.real_pose.pose.orientation.x, self.real_pose.pose.orientation.y,
                          self.real_pose.pose.orientation.z, self.real_pose.pose.orientation.w]
             _, _, real_rpy = euler_from_quaternion(real_quat)
-            return abs(calc_rpy - real_rpy)
+            self.abs_theta_err = abs(calc_rpy - real_rpy)
+            return self.abs_theta_err
         else:
             return ""
 
@@ -62,4 +68,3 @@ if __name__ == '__main__':
         error_handler.real_callback(result)
         error_handler.calc_errors()
         r.sleep()
-    # rospy.spin()
