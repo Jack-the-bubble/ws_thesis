@@ -1,0 +1,48 @@
+# The global frame for the costmap to operate in.
+global_frame: map
+# The name of the frame for the base link of the robot.
+robot_base_frame: torso_base
+# Specifies the delay in transform (tf) data that is tolerable in seconds.
+transform_tolerance: 3.0
+
+# The frequency in Hz for the map to be updated.
+update_frequency: 5
+# The frequency in Hz for the map to be publish display information.
+publish_frequency: 5
+# Whether or not to use a rolling window version of the costmap.
+rolling_window: false
+# If true the full costmap is published to "~<name>/costmap" every update. 
+always_send_full_costmap: true
+# Robot footprint polygon
+footprint: [[-0.36, -0.3775], [0.36, -0.3775], [0.36, 0.3775], [-0.36, 0.3775]]
+# map is static
+static_map: true
+
+# topic of the map publishing
+map_topic: map
+
+####################################################################
+
+static_layer:
+   # enable layer
+   enabled: true 
+   # The value for which a cost should be considered unknown when reading in a map from the map server. 
+   unknown_cost_value: -1
+   # The threshold value at which to consider a cost lethal when reading in a map from the map server.
+   lethal_cost_threshold: 100
+   # The topic that the costmap subscribes to for the static map.
+   map_topic: map
+   # If true, unknown values in the map messages are translated directly to the layer.
+   track_unknown_space: true
+   # If true, translates all map message values to NO_INFORMATION/FREE_SPACE/LETHAL_OBSTACLE (three values).
+   trinary_costmap: true
+
+##################################################################
+
+inflation_layer:
+   # enable layer
+   enabled: true
+   # The radius in meters to which the map inflates obstacle cost values.
+   inflation_radius: 0.2
+   # A scaling factor to apply to cost values during inflation.
+   cost_scaling_factor: 1.0

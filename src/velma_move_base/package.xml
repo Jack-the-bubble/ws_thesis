@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>velma_move_base</name>
+  <version>0.0.0</version>
+  <description>The velma_move_base package</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag -->
+  <!-- Example:  -->
+  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+  <maintainer email="silver@todo.todo">silver</maintainer>
+
+
+  <!-- One license tag required, multiple allowed, one license per tag -->
+  <!-- Commonly used license strings: -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>TODO</license>
+
+
+  <!--   <doc_depend>doxygen</doc_depend> -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>base_local_planner</build_depend>
+  <build_depend>costmap_2d</build_depend>
+  <build_depend>dwa_local_planner</build_depend>
+  <build_depend>eband_local_planner</build_depend>
+  <build_depend>global_planner</build_depend>
+  <build_depend>mbf_costmap_core</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>rotate_recovery</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>teb_local_planner</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>tf2_geometry_msgs</build_depend>
+  <build_depend>turtlesim</build_depend>
+  <build_export_depend>base_local_planner</build_export_depend>
+  <build_export_depend>costmap_2d</build_export_depend>
+  <build_export_depend>dwa_local_planner</build_export_depend>
+  <build_export_depend>eband_local_planner</build_export_depend>
+  <build_export_depend>global_planner</build_export_depend>
+  <build_export_depend>mbf_costmap_core</build_export_depend>
+  <build_export_depend>nav_msgs</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>rotate_recovery</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <build_export_depend>teb_local_planner</build_export_depend>
+  <build_export_depend>tf</build_export_depend>
+  <build_export_depend>tf2_geometry_msgs</build_export_depend>
+  <build_export_depend>turtlesim</build_export_depend>
+  <exec_depend>base_local_planner</exec_depend>
+  <exec_depend>costmap_2d</exec_depend>
+  <exec_depend>dwa_local_planner</exec_depend>
+  <exec_depend>eband_local_planner</exec_depend>
+  <exec_depend>global_planner</exec_depend>
+  <exec_depend>mbf_costmap_core</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>rotate_recovery</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>teb_local_planner</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>tf2_geometry_msgs</exec_depend>
+  <exec_depend>turtlesim</exec_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>

@@ -1,0 +1,22 @@
+throttle_scans: 2
+
+base_frame: monokl_r_heart
+
+map_update_interval: 3.0
+
+ogain: 10.0
+
+xmin: -30.0
+
+ymin: -30.0
+
+xmax: 30.0
+
+ymax: 30.0
+
+delta: 0.1
+
+transform_publish_period: 0
+
+maxRange: 30.0
+

@@ -1,0 +1,11 @@
+<launch>
+    <node pkg="move_base" type="move_base" name="velma_move_base">
+<!--        <param name="base_local_planner" value="eband_local_planner/EBandPlannerROS"/>-->
+        <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS"/>
+        <rosparam file="$(find teb_local_planner_tutorials)/cfg/omnidir/teb_local_planner_params.yaml" command="load" />
+        <rosparam file="$(find velma_planning)/config/omnidir/simple_params.yaml" command="load"/>
+    </node>
+
+<!--    node for head to follow mobile base trajectory-->
+
+</launch>

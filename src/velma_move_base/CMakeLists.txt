@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 2.8.3)
-project(velma_mapping)
+cmake_minimum_required(VERSION 3.0.2)
+project(velma_move_base)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,10 +8,22 @@ project(velma_mapping)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  laser_scan_matcher
-  rospy
+  base_local_planner
+  costmap_2d
+  dwa_local_planner
+  eband_local_planner
+  global_planner
+  mbf_costmap_core
+  nav_msgs
+  geometry_msgs
   roscpp
+  rospy
+  rotate_recovery
   std_msgs
+  teb_local_planner
+  tf
+  tf2_geometry_msgs
+  turtlesim
 )
 
 ## System dependencies are found with CMake's conventions
@@ -71,7 +83,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
+#   nav_msgs#   std_msgs#   tf2_geometry_msgs
 # )
 
 ################################################
@@ -105,8 +117,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES velma_mapping
-#  CATKIN_DEPENDS laser_scan_matcher rospy
+#  LIBRARIES velma_move_base
+#  CATKIN_DEPENDS base_local_planner costmap_2d dwa_local_planner eband_local_planner global_planner mbf_costmap_core nav_msgs roscpp rospy rotate_recovery std_msgs teb_local_planner tf tf2_geometry_msgs turtlesim
 #  DEPENDS system_lib
 )
 
@@ -123,7 +135,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/velma_mapping.cpp
+#   src/${PROJECT_NAME}/velma_move_base.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -134,7 +146,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/velma_mapping_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/velma_move_base_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -160,7 +172,7 @@ include_directories(
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
+# catkin_install_python(PROGRAMS
 #   scripts/my_python_script
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
@@ -198,13 +210,10 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_velma_mapping.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_velma_move_base.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-
-add_executable(planner src/first_planner_test.cpp)
-target_link_libraries(planner ${catkin_LIBRARIES})

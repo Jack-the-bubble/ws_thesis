@@ -1,0 +1,7 @@
+# Specifies whether or not to allow the planner to create plans that traverse unknown space. 
+allow_unknown: true
+# A tolerance on the goal point for the planner.
+default_tolerance: 0.05
+# How to set the orientation of each point 
+# (None=0, Forward=1, Interpolate=2, ForwardThenInterpolate=3, Backward=4, Leftward=5, Rightward=6) 
+orientation_mode: 1

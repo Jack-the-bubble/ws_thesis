@@ -1,0 +1,65 @@
+# The global frame for the costmap to operate in.
+global_frame: map
+# The name of the frame for the base link of the robot.
+robot_base_frame: torso_base
+# Specifies the delay in transform (tf) data that is tolerable in seconds.
+transform_tolerance: 3.0
+
+# The frequency in Hz for the map to be updated.
+update_frequency: 5
+# The frequency in Hz for the map to be publish display information.
+publish_frequency: 5
+# Whether or not to use a rolling window version of the costmap.
+rolling_window: true
+# If true the full costmap is published to "~<name>/costmap" every update. 
+always_send_full_costmap: true
+# Robot footprint polygon
+footprint: [[-0.36, -0.3775], [0.36, -0.3775], [0.36, 0.3775], [-0.36, 0.3775]]
+# The height of the map in meters.
+height: 5.0
+# The width of the map in meters.
+width: 5.0
+# map is voxel type
+#map_type: voxel
+
+######################################################################
+
+obstacle_layer:
+    enabled: true
+# enable layer
+# The number of unknown cells allowed in a column considered to be "known"
+    unknown_threshold: 16
+# The maximum number of marked cells allowed in a column considered to be "free".
+    mark_threshold: 0
+# Whether or not to publish the underlying voxel grid for visualization purposes.
+    publish_voxel_map: true
+# observe data from scan source
+    observation_sources: scan
+# scan source
+    scan:
+        topic: /monokl_r/scan
+# The topic on which sensor data comes in for this source. Defaults to the name of the source.
+# The frame of the origin of the sensor.
+        sensor_frame: monokl_r_heart
+# The data type associated with the topic.
+        data_type: LaserScan
+# Whether or not this observation should be used to clear out freespace.
+        clearing: true
+# if true, each pixel has one of 3 states: lethal obstacle, free, or unknown.
+# maybe set to false?
+    track_unknown_space: false
+# end
+
+
+######################################################
+
+inflation_layer:
+    enabled: true
+# enable layer
+# The radius in meters to which the map inflates obstacle cost values.
+    inflation_radius: 0.2
+# A scaling factor to apply to cost values during inflation.
+    cost_scaling_factor: 1.0
+# tracking unknown space on the local map
+    track_unknown_space: true
+# end

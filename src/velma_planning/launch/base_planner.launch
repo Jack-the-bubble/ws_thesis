@@ -1,0 +1,35 @@
+<launch>
+
+    <!-- run planner with configuration -->
+    <node name="velma_base_planner" pkg="velma_planning" type="main_planner" output="screen">
+        <!--        teb local planner-->
+<!--        <rosparam file="$(find velma_planning)/config/omnidir/simple_params.yaml" command="load"/>-->
+        <!--        <rosparam file="$(find teb_local_planner_tutorials)/cfg/omnidir/costmap_common_params.yaml" command="load" ns="global_costmap" />-->
+        <!--        <rosparam file="$(find teb_local_planner_tutorials)/cfg/omnidir/costmap_common_params.yaml" command="load" ns="local_costmap" />-->
+        <!--        <rosparam file="$(find teb_local_planner_tutorials)/cfg/omnidir/local_costmap_params.yaml" command="load" />-->
+        <!--        <rosparam file="$(find teb_local_planner_tutorials)/cfg/omnidir/global_costmap_params.yaml" command="load" />-->
+        <rosparam file="$(find teb_local_planner_tutorials)/cfg/omnidir/teb_local_planner_params.yaml" command="load" />
+
+        <!--        dwa local planner -->
+        <!--        <rosparam file="$(find teb_local_planner_tutorials)/cfg/omnidir/costmap_common_params.yaml" command="load" ns="global_costmap" />-->
+        <!--        <rosparam file="$(find teb_local_planner_tutorials)/cfg/omnidir/costmap_common_params.yaml" command="load" ns="local_costmap" />-->
+        <!--        <rosparam file="$(find teb_local_planner_tutorials)/cfg/omnidir/local_costmap_params.yaml" command="load" />-->
+        <!--        <rosparam file="$(find teb_local_planner_tutorials)/cfg/omnidir/global_costmap_params.yaml" command="load" />-->
+        <!--        <rosparam file="$(find teb_local_planner_tutorials)/cfg/omnidir/teb_local_planner_params.yaml" command="load" />-->
+        <!--        <rosparam file="$(find velma_planning)/config/dwa_planner/dwa_params.yaml" command="load" />-->
+
+
+        <!-- <rosparam file="$(find velma_planning)/params/global_costmap.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find velma_planning)/params/local_costmap.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find velma_planning)/params/global_planner.yaml" command="load" ns ="global_planner" />
+        <rosparam file="$(find velma_planning)/params/local_planner.yaml" command="load" ns ="local_planner" /> -->
+    </node>
+
+    <rosparam file="$(find velma_planning)/config/omnidir/simple_params.yaml" command="load" ns="velma_base_planner"/>
+<!--    <rosparam file="$(find velma_planning)/config/omnidir/simple_loc_params.yaml" command="load" ns="velma_base_planner/local_costmap"/>-->
+
+    <!-- misc -->
+
+    <!-- position of important objects in gazebo -->
+    <!-- <node name="object_markers" pkg="omnivelma_driver" type="object_marker" output="screen" /> -->
+</launch>
