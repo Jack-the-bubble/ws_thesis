@@ -7,5 +7,5 @@
     </node>
 
 <!--    node for head to follow mobile base trajectory-->
-
+    <node pkg="velma_move_base" type="follow_base_with_head.py" name="follow_base_with_head"/>
 </launch>
