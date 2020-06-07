@@ -22,7 +22,6 @@ class VelmaController:
 		self.time_stamp = rospy.Time.now()
 		self.base_ongoing = False
 
-		velma_cmd = rospy.Subscriber('cmd_vel', Twist, self.velocity_callback)
 		self.velma = VelmaInterface()
 
 		# print "Waiting for VelmaInterface initialization..."
@@ -39,6 +38,8 @@ class VelmaController:
 			print "Motors must be homed and ready to use for this test."
 			exitError(3)
 
+		velma_cmd = rospy.Subscriber('cmd_vel', Twist, self.velocity_callback)
+
 	def main_loop(self):
 		while not rospy.is_shutdown() and self.base_ongoing:
 			if self.is_moving():
@@ -46,14 +47,17 @@ class VelmaController:
 					self.switchToJimp()
 				print ("Implement turning into direction of travel")
 				desired_angle = math.atan2(self.current_velocity.linear.y, self.current_velocity.linear.x)
-				q_map_starting['torso_0_joint'] = desired_angle
-				self.velma.moveJoint(q_map_starting, 6.0)
-				q_dest_head = (-0.2, desired_angle)
-				self.velma.moveHead(q_dest_head, 1.0, start_time=0.5)
+				print("desired_angle: {}".format(desired_angle))
+				q_map_starting['torso_0_joint'] = desired_angle #q_map_starting['torso_0_joint'] + 0.1 #desired_angle
+				self.velma.moveJoint(q_map_starting, 10.0)
+				# q_dest_head = (-0.2, desired_angle)
+				# self.velma.moveHead(q_dest_head, 1.0, start_time=0.5)
 				error = self.velma.waitForJoint()
 				if error != 0:
 					print ("error while waiting for robot to turn")
 					exitError(1)
+
+				print("finished move")
 
 
 
@@ -64,7 +68,9 @@ class VelmaController:
 
 	def is_moving(self):
 		current_time = rospy.Time.now()
-		if current_time.secs - self.time_stamp.secs < 2:
+		print ("Current time: {}\n last recorded: {}".format(current_time, self.time_stamp))
+		print("X velocity: {}\n Y velocity: {}".format(self.current_velocity.linear.x, self.current_velocity.linear.y))
+		if current_time.secs - self.time_stamp.secs < 2 and (self.current_velocity.linear.x != 0 or self.current_velocity.linear.y != 0):
 			print ("on the move")
 			return True
 		else:

@@ -32,12 +32,12 @@
     <node pkg="tf2_ros" type="static_transform_publisher" name="world_map_tf" args="0 0 0 0 0 0 world map"/>
 
     <!--    map-odom static tf-->
-<!--    <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_tf" args="0 0 0 0 0 0 map odom"/>-->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_tf" args="0 0 0 0 0 0 map odom"/>
 
 <!--    amcl node instead fo static map-odom transform-->
-    <node pkg="amcl" type="amcl" name="velma_amcl">
-        <remap from="scan" to="scan_multi"/>
-    </node>
+<!--    <node pkg="amcl" type="amcl" name="velma_amcl">-->
+<!--        <remap from="scan" to="scan_multi"/>-->
+<!--    </node>-->
 
 <!--    scan merger-->
     <include file="$(find ira_laser_tools)/launch/laserscan_multi_merger.launch"/>
@@ -73,9 +73,9 @@
     <node pkg="rviz" type="rviz" name="rviz_node"/>
 
     <!--  run keyborard control node  -->
-<!--    <node pkg="lalkarz" type="lalkarz" name="lalkarz" args="-t /lalkarz/cmd_vel"/>-->
+    <node pkg="lalkarz" type="lalkarz" name="lalkarz" args="-t /lalkarz/cmd_vel"/>
     <!--rotate commands from lalkarz and publish to cmd_vel-->
-<!--    <node pkg="velma_mapping" type="keyboard_move_node.py" name="lalkarz_translate"/>-->
+    <node pkg="velma_mapping" type="keyboard_move_node.py" name="lalkarz_translate"/>
 
 </launch>
 
