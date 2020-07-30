@@ -38,33 +38,39 @@ class VelmaController:
 			print "Motors must be homed and ready to use for this test."
 			exitError(3)
 
-		velma_cmd = rospy.Subscriber('cmd_vel', Twist, self.velocity_callback)
+		self.velma_cmd = rospy.Subscriber('cmd_vel', Twist, self.velocity_callback, queue_size=1)
 
 	def main_loop(self):
-		while not rospy.is_shutdown() and self.base_ongoing:
-			if self.is_moving():
-				if not self.velma.getCoreCsDiag().inStateJntImp():
-					self.switchToJimp()
-				print ("Implement turning into direction of travel")
-				desired_angle = math.atan2(self.current_velocity.linear.y, self.current_velocity.linear.x)
-				print("desired_angle: {}".format(desired_angle))
-				q_map_starting['torso_0_joint'] = desired_angle #q_map_starting['torso_0_joint'] + 0.1 #desired_angle
-				self.velma.moveJoint(q_map_starting, 10.0)
-				# q_dest_head = (-0.2, desired_angle)
-				# self.velma.moveHead(q_dest_head, 1.0, start_time=0.5)
-				error = self.velma.waitForJoint()
-				if error != 0:
-					print ("error while waiting for robot to turn")
-					exitError(1)
+		# while not rospy.is_shutdown() and self.base_ongoing:
+		# 	if self.is_moving():
+		if not self.velma.getCoreCsDiag().inStateJntImp():
+			self.switchToJimp()
+		print ("Implement turning into direction of travel")
+		vel_x = self.current_velocity.linear.x
+		vel_y = self.current_velocity.linear.y
+		# if vel_x > 0 and vel_y > 0:
+		desired_angle = math.atan2(vel_y, vel_x)
+		# elif vel_x < 0 and vel_y > 0:
+		# 	desired_angle = -(math.pi / 2 - math.atan2(vel_y, vel_x))
 
-				print("finished move")
+		print("desired_angle: {}".format(desired_angle))
+		# q_map_starting['torso_0_joint'] = desired_angle #q_map_starting['torso_0_joint'] + 0.1 #desired_angle
+		# self.velma.moveJoint(q_map_starting, 15.0)
+		q_dest_head = (-0.2, desired_angle)
+		self.velma.moveHead(q_dest_head, 10.0, start_time=0.5)
+		error = self.velma.waitForJoint()
+		if error != 0:
+			print ("error while waiting for robot to turn")
+			exitError(1)
+
+		print("finished move")
 
 
 
-				rospy.sleep(0.5)
+		rospy.sleep(0.5)
 
-			else:
-				print ("Not moving, nothing to do in this node")
+			# else:
+			# 	print ("Not moving, nothing to do in this node")
 
 	def is_moving(self):
 		current_time = rospy.Time.now()
@@ -143,10 +149,14 @@ class VelmaController:
 			exitError(8)
 
 	def velocity_callback(self, msg):
-		self.current_velocity = msg
-		self.time_stamp = rospy.Time.now()
+		if self.current_velocity.linear.x != msg.linear.x or self.current_velocity.linear.y != msg.linear.y \
+				or self.current_velocity.angular.z != msg.angular.z:
+
+			self.current_velocity = msg
+			self.time_stamp = rospy.Time.now()
+
+			self.main_loop()
 		self.base_ongoing = True
-		self.main_loop()
 
 
 if __name__ == '__main__':
@@ -172,7 +182,10 @@ if __name__ == '__main__':
 	# rospy.INFO('finished initializing body, starting to move')
 	print('finished initializing body, starting to move')
 
-	velma_con.main_loop()
+	q_dest_head = (-0.2, 1.57)
+	velma_con.velma.moveHead(q_dest_head, 10.0, start_time=0.5)
+	error = velma_con.velma.waitForJoint()
+	# velma_con.main_loop()
 
 	# q_map_starting['torso_0_joint'] = 0.6
 	# velma_con.velma.moveJoint(q_map_starting, 5.0)

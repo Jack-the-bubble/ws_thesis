@@ -1,13 +1,18 @@
 <?xml version="1.0"?>
 <launch>
     <arg name="use_kinect" default="true"/>
-<!--    <arg name="world_name" default="$(find rcprg_gazebo_utils)/data/gazebo/worlds/blank.world" />-->
-     <arg name="world_name" default="$(find inzynier_v1)/data/gazebo/worlds/velma_experiment.world" />
+<!--     <arg name="world_name" default="$(find inzynier_v1)/data/gazebo/worlds/velma_experiment.world" />-->
+     <arg name="world_name" default="/home/silver/INZYNIER/velma/ws_thesis/worlds/simple/simple.world" />
+<!--     <arg name="world_name" default="/home/mskrzypk/test-velma/ws_thesis/worlds/omnivelma/velma_mobile.world" />-->
+     <!-- <arg name="world_name" default="/home/mskrzypk/desperate-velma/ws_thesis/worlds/omnivelma/velma_mobile.world" /> -->
+<!--     <arg name="world_name" default="/home/silver/INZYNIER/velma/ws_thesis/worlds/complex/complex.world" />-->
 <!--    <arg name="world_name" default="$(find inzynier_v1)/data/gazebo/worlds/my_world.world" />-->
 <!--     <arg name="world_name" default="$(find inzynier_v1)/data/gazebo/worlds/square_mapping_test.world" />-->
-    <arg name="map_file" default="$(find velma_mapping)/maps/velma_testing_ground_correct.yaml"/>
+
+<!--    <arg name="map_file" default="$(find velma_mapping)/maps/velma_testing_ground_correct.yaml"/>-->
+        <arg name="map_file" default="$(find velma_mapping)/maps/simple/simple-matcher-only-gmapping.yaml"/>
 <!--    <arg name="map_file" default="$(find velma_mapping)/maps/octomap_projection_combined.yaml"/>-->
-    <arg name="GAZEBO_MODEL_PATH" default=""/>
+    <arg name="GAZEBO_MODEL_PATH" default="/home/mskrzypk/test-velma/ws_velma_os/src/omnivelma/omnivelma/src"/>
     <arg name="GAZEBO_RESOURCE_PATH" default=""/>
     <arg name="profile" default="dart_2ms"/>
 
@@ -19,7 +24,9 @@
        <arg name="world_name" value="$(arg world_name)"/>
 <!--       Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
       <arg name="use_kinect" default="$(arg use_kinect)"/>
-      <arg name="GAZEBO_MODEL_PATH" value="$(arg GAZEBO_MODEL_PATH):$(find rcprg_gazebo_utils)/data/gazebo/models:$(find inzynier_v1)/data/gazebo/models"/>
+      <arg name="GAZEBO_MODEL_PATH" value="$(arg GAZEBO_MODEL_PATH)"/>
+<!--      <arg name="GAZEBO_MODEL_PATH" value="$(arg GAZEBO_MODEL_PATH):$(find rcprg_gazebo_utils)/data/gazebo/models:$(find inzynier_v1)/data/gazebo/models"/>-->
+<!--      <arg name="GAZEBO_MODEL_PATH" value="$(arg GAZEBO_MODEL_PATH):$(find omnivelma)/.."/>-->
       <arg name="GAZEBO_RESOURCE_PATH" value="$(arg GAZEBO_RESOURCE_PATH):$(find rcprg_gazebo_utils)/data/gazebo:$(find inzynier_v1)/data/gazebo"/>
       <arg name="profile" value="$(arg profile)"/>
       <arg name="state_snapshot" value="$(arg state_snapshot)" />
@@ -35,14 +42,13 @@
     <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_tf" args="0 0 0 0 0 0 map odom"/>
 
 <!--    amcl node instead fo static map-odom transform-->
-<!--    <node pkg="amcl" type="amcl" name="velma_amcl">-->
-<!--        <remap from="scan" to="scan_multi"/>-->
-<!--    </node>-->
+    <!-- <node pkg="amcl" type="amcl" name="velma_amcl">
+        <remap from="scan" to="scan_multi"/>
+    </node> -->
 
-<!--    scan merger-->
-    <include file="$(find ira_laser_tools)/launch/laserscan_multi_merger.launch"/>
+
     <!--    map server -->
-    <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)"/>
+    <!-- <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)"/> -->
 
     <!--  laser_scan_matcher  -->
     <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher_node" output="screen">
@@ -58,24 +64,33 @@
         <param name="publish_pose" value="true"/>
         <param name="publish_tf" value="true"/>
         <param name="use_vel" value="false"/>
+
         <remap from="scan" to="scan_multi"/>
+        <remap from="imu/data" to="wewucho/imu"/>
     </node>
 
-
-
-<!--    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">-->
-<!--        <param name="map_udpate_interval" value="1.0"/>-->
-<!--        <param name="delta" value="0.02"/>-->
-<!--    </node>-->
+    <!-- <node pkg="velma_task_cs_ros_interface" type="initialize_robot.py" name="initialize_robot"/> -->
+  
+    <!-- <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+        <param name="map_udpate_interval" value="1.0"/>
+        <param name="delta" value="0.02"/>
+        <remap from="scan" to="scan_multi"/>
+    </node> -->
 
 
     <!--    rviz-->
     <node pkg="rviz" type="rviz" name="rviz_node"/>
 
+    <!--    scan merger - for some reason won't initialize - must be instantiated from another terminal-->
+    <!-- <include file="$(find ira_laser_tools)/launch/laserscan_multi_merger.launch"/> -->
+
     <!--  run keyborard control node  -->
-    <node pkg="lalkarz" type="lalkarz" name="lalkarz" args="-t /lalkarz/cmd_vel"/>
+<!--    <node pkg="lalkarz" type="lalkarz" name="lalkarz" args="-t /lalkarz/cmd_vel"/>-->
     <!--rotate commands from lalkarz and publish to cmd_vel-->
-    <node pkg="velma_mapping" type="keyboard_move_node.py" name="lalkarz_translate"/>
+<!--    <node pkg="velma_mapping" type="keyboard_move_node.py" name="lalkarz_translate"/>-->
+
+    <!--   init manipulation part   -->
+    <node pkg="velma_task_cs_ros_interface" type="initialize_robot.py" name="initialize_robot" output="screen"/>
 
 </launch>
 

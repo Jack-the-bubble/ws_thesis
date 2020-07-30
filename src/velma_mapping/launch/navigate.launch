@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<launch>
+
+<!--    <arg name="map_file" default="$(find velma_mapping)/maps/velma_testing_ground_correct.yaml"/>-->
+    <arg name="map_file" default="$(find velma_mapping)/maps/simple/simple-matcher-only-gmapping.yaml"/>
+<!--    <arg name="map_file" default="$(find velma_mapping)/maps/P109/P109-odom-only-gmapping.yaml"/>-->
+<!--    <arg name="map_file" default="$(find velma_mapping)/maps/P109/P109-matcher-only-gmapping.yaml"/>-->
+
+     <!--    map server -->
+    <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)"/>
+
+<!--    3D map-->
+
+
+    <!--    amcl node instead fo static map-odom transform-->
+<!--    <node pkg="amcl" type="amcl" name="velma_amcl">-->
+<!--        <param  name="update_min_a" value="0.1"/>-->
+<!--        <remap from="scan" to="scan_multi"/>-->
+<!--    </node>-->
+
+
+
+<!--    navigation stack-->
+    <node pkg="move_base" type="move_base" name="velma_move_base">
+<!--        <param name="base_local_planner" value="eband_local_planner/EBandPlannerROS"/>-->
+        <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS"/>
+        <rosparam file="$(find teb_local_planner_tutorials)/cfg/omnidir/teb_local_planner_params.yaml" command="load" />
+<!--        <rosparam file="$(find velma_move_base)/config/good-omnidir-teb-params.yaml" command="load" />-->
+        <rosparam file="$(find velma_planning)/config/omnidir/simple_params.yaml" command="load"/>
+    </node>
+
+<!--    node for head to follow mobile base trajectory-->
+    <node pkg="velma_move_base" type="follow_base_with_head.py" name="follow_base_with_head"/>
+</launch>

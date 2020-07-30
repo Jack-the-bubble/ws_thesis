@@ -53,7 +53,7 @@ def initialize_velma():
         exitError(2)
 
     print "Switch to cart_imp mode (no trajectory)..."
-    if not velma.moveCartImpRightCurrentPos(start_time=0.2):
+    if not velma.moveCartImpRightCurrentPos(start_time=5):
         exitError(8)
     if velma.waitForEffectorRight() != 0:
         exitError(9)
@@ -107,8 +107,8 @@ def move_base(increment, time):
 
     rospy.sleep(0.5)
     js = velma.getLastJointState()
-    # if not velma.isConfigurationClose(q_next, js[1], tolerance=0.1):
-    #     exitError(10)
+    if not velma.isConfigurationClose(q_next, js[1], tolerance=0.1):
+        exitError(10)
 
 scale = 0.1
 
@@ -145,7 +145,7 @@ if __name__ == '__main__':
                 velma.moveHead(q_dest, 0.01)
             elif key in move_base_binding.keys():
                 last_state = velma.getLastJointState()
-                q_map = move_base(move_base_binding[key],0.05)
+                q_map = move_base(move_base_binding[key],10)
                 # velma.moveJoint(q_map, 0.5, start_time=0.5, position_tol=15.0 / 180.0 * math.pi)
 
 

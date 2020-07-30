@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="velma_experiments" type="localization_tests.py" name="mytests"/>
+<!--    <node pkg="velma_experiments" type="data_recorder.py" name="data_recorder"/>-->
+</launch>

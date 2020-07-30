@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="file_name" value="simple-lassolo-long-line"/>
+
+    <!--    manual localization testing-->
+    <node pkg="velma_experiments" type="manual_localization_tests.py" name="manual_localization_tests"/>
+
+<!--    <node pkg="velma_experiments" type="localization_tests.py" name="localization_tests"/>-->
+
+    <node pkg="rosbag" type="record" name="loc_test_rec"
+          args="record -o $(find velma_experiments)/data/$(arg file_name) /odom /ground_truth/state /pose2D /amcl_pose /cmd_vel"/>
+
+    <node pkg="velma_experiments" type="localize_dump_data_to_csv.py" name="make_csv"
+          args="$(find velma_experiments)/data-raw/$(arg file_name)"/>
+
+</launch>
