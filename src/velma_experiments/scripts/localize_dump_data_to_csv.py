@@ -12,6 +12,9 @@ import os
 import sys
 
 from tf.transformations import euler_from_quaternion
+from tf import TransformListener
+import tf
+
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Pose2D
 from geometry_msgs.msg import PoseWithCovarianceStamped, Twist
@@ -27,8 +30,8 @@ class Writer:
         for key in final_topic_list:
             self.data_table[key] = []
 
-        # self.file_dir = '/home/mskrzypk/test-velma/ws_thesis/src/velma_experiments/'
-        # self.file_dir = os.path.join(self.file_dir, file_name+'.csv')
+        self.tf_listener = TransformListener()
+
         self.file_dir = file_name + '.csv'
 
         self.calc_ = Odometry()
@@ -38,8 +41,8 @@ class Writer:
         self.ideal_ = Odometry
         self.vel_ = Twist
 
-        rospy.Subscriber('odom', Odometry, self.odom_callback)
-        # rospy.Subscriber('pose2D', Pose2D, self.laser_callback)
+        # rospy.Subscriber('odom', Odometry, self.odom_callback)
+        rospy.Subscriber('pose2D', Pose2D, self.laser_callback)
         # rospy.Subscriber('amcl_pose', PoseWithCovarianceStamped, self.amcl_callback)
 
         rospy.Subscriber('ground_truth/state', Odometry, self.ideal_callback)
@@ -47,16 +50,34 @@ class Writer:
 
     def write_data(self):
         print("Writing")
-        if type(self.calc_) == Odometry or type(self.calc_) == PoseWithCovarianceStamped:
+        if type(self.calc_) == Odometry:
+            trans, rot = [], []
+            try:
+                (trans, rot) = self.tf_listener.lookupTransform('world', 'base_link', rospy.Time(0))
+            except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+                print("WARN: did not get tf world-base_link")
+                return
+
+            self.data_table['calculated_x'].append(trans[0])
+            self.data_table['calculated_y'].append(trans[1])
+            _, _, yaw = euler_from_quaternion(rot)
+            self.data_table['calculated_theta'].append(yaw)
+
+        elif  type(self.calc_) == Pose2D:
+            self.data_table['calculated_x'].append(self.calc_.x)
+            self.data_table['calculated_y'].append(self.calc_.y)
+            self.data_table['calculated_theta'].append(self.calc_.theta)
+
+        elif type(self.calc_) == PoseWithCovarianceStamped:
             self.data_table['calculated_x'].append(self.calc_.pose.pose.position.x)
             self.data_table['calculated_y'].append(self.calc_.pose.pose.position.y)
             orient_ = self.calc_.pose.pose.orientation
             _, _, yaw = euler_from_quaternion([orient_.x, orient_.y, orient_.z, orient_.w])
             self.data_table['calculated_theta'].append(yaw)
-        elif type(self.calc_) == Pose2D:
-            self.data_table['calculated_x'].append(self.calc_.x)
-            self.data_table['calculated_y'].append(self.calc_.y)
-            self.data_table['calculated_theta'].append(self.calc_.theta)
+        # elif type(self.calc_) == Pose2D:
+        #     self.data_table['calculated_x'].append(self.calc_.x)
+        #     self.data_table['calculated_y'].append(self.calc_.y)
+        #     self.data_table['calculated_theta'].append(self.calc_.theta)
 
         self.data_table['ideal_x'].append(self.ideal_.pose.pose.position.x)
         self.data_table['ideal_y'].append(self.ideal_.pose.pose.position.y)
@@ -82,7 +103,7 @@ class Writer:
         # self.data_table['vel_y'].append(self.vel_.linear.y)
         # self.data_table['vel_theta'].append(self.vel_.angular.z)
 
-        self.data_table['time'] = rospy.Time.now()
+        self.data_table['time'].append(rospy.Time.now())
 
         data_frame = pd.DataFrame(self.data_table, columns=self.data_table.keys())
         data_frame.to_csv(self.file_dir)

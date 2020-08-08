@@ -175,7 +175,7 @@ dictitems:
               is_footprint_dynamic: false
               max_vel_theta: 0.3
               max_vel_x: 0.4
-              max_vel_x_backwards: 0.5
+              max_vel_x_backwards: 0.3
               name: Robot
               parameters: !!python/object/new:dynamic_reconfigure.encoding.Config
                 state: []
@@ -241,7 +241,7 @@ dictitems:
   max_number_classes: 4
   max_vel_theta: 0.3
   max_vel_x: 0.4
-  max_vel_x_backwards: 0.5
+  max_vel_x_backwards: 0.3
   max_vel_y: 0.3
   min_obstacle_dist: 0.7
   min_turning_radius: 0.0

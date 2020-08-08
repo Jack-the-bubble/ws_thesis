@@ -1,19 +1,23 @@
 <?xml version="1.0"?>
 <launch>
         <!--  run keyborard control node  -->
-    <!-- <node pkg="lalkarz" type="lalkarz" name="lalkarz" args="-t /lalkarz/cmd_vel"/> -->
+     <node pkg="lalkarz" type="lalkarz" name="lalkarz" args="-t /lalkarz/cmd_vel"/>
     <!--rotate commands from lalkarz and publish to cmd_vel-->
-    <!-- <node pkg="velma_mapping" type="keyboard_move_node.py" name="lalkarz_translate"/> -->
+     <node pkg="velma_mapping" type="keyboard_move_node.py" name="lalkarz_translate"/>
 
 
-    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
-        <param name="map_udpate_interval" value="1.0"/>
-        <param name="delta" value="0.02"/>
-        <remap from="scan" to="scan_multi"/>
-    </node>
+<!--    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">-->
+<!--        <param name="map_udpate_interval" value="1.0"/>-->
+<!--        <param name="delta" value="0.02"/>-->
+<!--        <remap from="scan" to="scan_multi"/>-->
+<!--    </node>-->
 
 <!--    3D map-->
 <!--    <include file="$(find octomap_server)/launch/octomap_mapping.launch"/>-->
+<!--    <param name="octomap_server/occupancy_min_z" value="0.3"/>-->
 
-<!--     <node pkg="velma_mapping" type="simple_head_move.py" name="simple_head_move"/> -->
+    <!--    node for head to follow mobile base trajectory-->
+<!--    <node pkg="velma_move_base" type="follow_base_with_head.py" name="follow_base_with_head"/>-->
+
+<!--     <node pkg="velma_mapping" type="simple_head_move.py" name="simple_head_move"/>-->
 </launch>

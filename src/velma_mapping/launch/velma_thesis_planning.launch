@@ -3,14 +3,15 @@
     <arg name="use_kinect" default="true"/>
 <!--     <arg name="world_name" default="$(find inzynier_v1)/data/gazebo/worlds/velma_experiment.world" />-->
      <arg name="world_name" default="/home/silver/INZYNIER/velma/ws_thesis/worlds/simple/simple.world" />
-<!--     <arg name="world_name" default="/home/mskrzypk/test-velma/ws_thesis/worlds/omnivelma/velma_mobile.world" />-->
+<!--     <arg name="world_name" default="/home/silver/INZYNIER/velma/ws_thesis/worlds/omnivelma/velma_mobile.world" />-->
      <!-- <arg name="world_name" default="/home/mskrzypk/desperate-velma/ws_thesis/worlds/omnivelma/velma_mobile.world" /> -->
 <!--     <arg name="world_name" default="/home/silver/INZYNIER/velma/ws_thesis/worlds/complex/complex.world" />-->
 <!--    <arg name="world_name" default="$(find inzynier_v1)/data/gazebo/worlds/my_world.world" />-->
 <!--     <arg name="world_name" default="$(find inzynier_v1)/data/gazebo/worlds/square_mapping_test.world" />-->
 
+<!--    <arg name="map_file" default="$(find velma_mapping)/maps/P109/P109-odom-only-gmapping.yaml"/>-->
 <!--    <arg name="map_file" default="$(find velma_mapping)/maps/velma_testing_ground_correct.yaml"/>-->
-        <arg name="map_file" default="$(find velma_mapping)/maps/simple/simple-matcher-only-gmapping.yaml"/>
+<!--        <arg name="map_file" default="$(find velma_mapping)/maps/simple/simple-matcher-only-gmapping.yaml"/>-->
 <!--    <arg name="map_file" default="$(find velma_mapping)/maps/octomap_projection_combined.yaml"/>-->
     <arg name="GAZEBO_MODEL_PATH" default="/home/mskrzypk/test-velma/ws_velma_os/src/omnivelma/omnivelma/src"/>
     <arg name="GAZEBO_RESOURCE_PATH" default=""/>
@@ -31,15 +32,28 @@
       <arg name="profile" value="$(arg profile)"/>
       <arg name="state_snapshot" value="$(arg state_snapshot)" />
       <arg name="spawn_velma" value="$(arg spawn_velma)" />
+
     </include>
 
 
     <!--    world-map static tf-->
-<!--    <node pkg="tf" type="static_transform_publisher" name="world_map_tf" args="0 0 0 0 0 0 world map 10"/>-->
     <node pkg="tf2_ros" type="static_transform_publisher" name="world_map_tf" args="0 0 0 0 0 0 world map"/>
 
+
+
     <!--    map-odom static tf-->
+<!--    line test-->
     <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_tf" args="0 0 0 0 0 0 map odom"/>
+<!--    corner turn test-->
+<!--    <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_tf" args="10 1 0 0 0 0 map odom"/>-->
+
+<!--    knnown obstacle test-->
+<!--    <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_tf" args="2 1 0 0 0 0 map odom"/>-->
+
+<!--    strafe along table-->
+<!--    <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_tf" args="2 1 0 0 0 0 map odom"/>-->
+<!--    ride along the wall-->
+<!--    <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_tf" args="2 1 0 0 0 0 map odom"/>-->
 
 <!--    amcl node instead fo static map-odom transform-->
     <!-- <node pkg="amcl" type="amcl" name="velma_amcl">
@@ -48,11 +62,10 @@
 
 
     <!--    map server -->
-    <!-- <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)"/> -->
+<!--     <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)"/>-->
 
     <!--  laser_scan_matcher  -->
     <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher_node" output="screen">
-
         <param name="fixed_frame" value = "odom"/>
         <param name="target_frame" value="base_link"/>
 <!--        <param name="base_frame" value="base_link"/>-->
@@ -66,17 +79,9 @@
         <param name="use_vel" value="false"/>
 
         <remap from="scan" to="scan_multi"/>
-        <remap from="imu/data" to="wewucho/imu"/>
+<!--        <remap from="odom" to="gazebo_odom"/>-->
+<!--        <remap from="imu/data" to="wewucho/imu"/>-->
     </node>
-
-    <!-- <node pkg="velma_task_cs_ros_interface" type="initialize_robot.py" name="initialize_robot"/> -->
-  
-    <!-- <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
-        <param name="map_udpate_interval" value="1.0"/>
-        <param name="delta" value="0.02"/>
-        <remap from="scan" to="scan_multi"/>
-    </node> -->
-
 
     <!--    rviz-->
     <node pkg="rviz" type="rviz" name="rviz_node"/>

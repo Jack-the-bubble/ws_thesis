@@ -83,14 +83,22 @@ if __name__ == '__main__':
 
 
 	# square with rotation
-	put_to_waypoints('one', (1.0, 0.0), (0.0, 0.0, 0.0))
-	put_to_waypoints('two', (1.0, 0.0), (0.0, 0.0, math.pi/2))
-	put_to_waypoints('three', (1.0, 1.0), (0.0, 0.0, math.pi / 2))
-	put_to_waypoints('four', (1.0, 1.0), (0.0, 0.0, math.pi))
-	put_to_waypoints('five', (0.0, 1.0), (0.0, 0.0, math.pi))
-	put_to_waypoints('six', (0.0, 1.0), (0.0, 0.0, math.pi * 3 / 2))
-	put_to_waypoints('seven', (0.0, 0.0), (0.0, 0.0, -math.pi / 2))
-	put_to_waypoints('eight', (0.0, 0.0), (0.0, 0.0, 0.0))
+	put_to_waypoints('one', (0.0, 0.0), (0.0, 0.0, 0.0))
+	put_to_waypoints('two', (0.0, 0.0), (0.0, 0.0, -math.pi/2))
+	put_to_waypoints('three', (0.0, -1.0), (0.0, 0.0, -math.pi/2))
+	put_to_waypoints('four', (0.0, -1.0), (0.0, 0.0, 0.0))
+	put_to_waypoints('five', (2.0, -1.0), (0.0, 0.0, 0.0))
+	put_to_waypoints('six', (2.0, -1.0), (0.0, 0.0, math.pi/2))
+	put_to_waypoints('seven', (2.0, 1.0), (0.0, 0.0, math.pi / 2))
+	put_to_waypoints('eight', (2.0, 1.0), (0.0, 0.0, math.pi))
+	put_to_waypoints('nine', (0.0, 1.0), (0.0, 0.0, math.pi))
+	put_to_waypoints('ten', (0.0, 1.0), (0.0, 0.0, -math.pi/2))
+	put_to_waypoints('eleven', (0.0, 0.0), (0.0, 0.0, -math.pi / 2))
+	# put_to_waypoints('four', (1.0, 1.0), (0.0, 0.0, math.pi))
+	# put_to_waypoints('five', (0.0, 1.0), (0.0, 0.0, math.pi))
+	# put_to_waypoints('six', (0.0, 1.0), (0.0, 0.0, math.pi * 3 / 2))
+	# put_to_waypoints('seven', (0.0, 0.0), (0.0, 0.0, -math.pi / 2))
+	# put_to_waypoints('eight', (0.0, 0.0), (0.0, 0.0, 0.0))
 
 	# square with constant orientation
 	# put_to_waypoints('start', (0.0, 0.0), (0.0, 0.0, 0.0))

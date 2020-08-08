@@ -56,7 +56,7 @@ class VelmaController:
 		print("desired_angle: {}".format(desired_angle))
 		# q_map_starting['torso_0_joint'] = desired_angle #q_map_starting['torso_0_joint'] + 0.1 #desired_angle
 		# self.velma.moveJoint(q_map_starting, 15.0)
-		q_dest_head = (-0.2, desired_angle)
+		q_dest_head = (0.2, desired_angle)
 		self.velma.moveHead(q_dest_head, 10.0, start_time=0.5)
 		error = self.velma.waitForJoint()
 		if error != 0:

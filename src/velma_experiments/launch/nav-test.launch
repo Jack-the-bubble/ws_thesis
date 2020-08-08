@@ -5,11 +5,10 @@
     <!--    manual localization testing-->
 <!--    <node pkg="velma_experiments" type="manual_localization_tests.py" name="manual_localization_tests"/>-->
 <!--    <node pkg="velma_experiments" type="localization_tests.py" name="localization_tests"/>-->
+    <node pkg="velma_experiments" type="publish_pose.py" name="publish_pose"
+        args="0 0 -math.pi/2"/>
 
-    <node pkg="rosbag" type="record" name="loc_test_rec"
-          args="record -o $(find velma_experiments)/data/$(arg file_name) /odom /ground_truth/state /pose2D /amcl_pose /cmd_vel"/>
-
-    <node pkg="velma_experiments" type="localize_dump_data_to_csv.py" name="make_csv"
-          args="$(find velma_experiments)/data-mapping/$(arg file_name)"/>
+    <node pkg="velma_experiments" type="gather_move_base_data.py" name="make_csv"
+        args="dwa-line DWAPlannerROS" />
 
 </launch>

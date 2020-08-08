@@ -25,9 +25,12 @@ class ManualNav:
 		# self.calc_ = Pose2D()
 		# self.calc_ = PoseWithCovarianceStamped()
 
-		rospy.Subscriber('odom', Odometry, self.odom_callback)
+		# rospy.Subscriber('odom', Odometry, self.odom_callback)
 		# rospy.Subscriber('pose2D', Pose2D, self.laser_callback)
 		# rospy.Subscriber('amcl_pose', PoseWithCovarianceStamped, self.odom_callback)
+
+		# in case I want to get data from ideal position
+		rospy.Subscriber('ground_truth/state', Odometry, self.ideal_callback)
 
 		self.vel_pub =rospy.Publisher('cmd_vel', Twist, queue_size=1)
 
@@ -97,6 +100,14 @@ class ManualNav:
 		self.current_position.theta = yaw
 		print("Theta: {}".format(yaw))
 
+	def ideal_callback(self, msg):
+		orient_ = msg.pose.pose.orientation
+		_, _, yaw = euler_from_quaternion([orient_.x, orient_.y, orient_.z, orient_.w])
+		self.current_position.x = msg.pose.pose.position.x
+		self.current_position.y = msg.pose.pose.position.y
+		self.current_position.theta = yaw
+		# print("Theta: {}".format(yaw))
+
 	def laser_callback(self, msg):
 		self.current_position = msg
 
@@ -110,9 +121,9 @@ if __name__ == '__main__':
 	simple_planner = ManualNav()
 
 	# long line
-	simple_planner.goals_sequence.append(Pose2D(0, 0, 0))
-	simple_planner.goals_sequence.append(Pose2D(3, 0, 0))
-	simple_planner.goals_sequence.append(Pose2D(0, 0, 0))
+	# simple_planner.goals_sequence.append(Pose2D(0, 0, 0))
+	# simple_planner.goals_sequence.append(Pose2D(2, 0, 0))
+	# simple_planner.goals_sequence.append(Pose2D(0, 0, 0))
 
 	# circle
 	# simple_planner.goals_sequence.append(Pose2D(0, 0, 0))
@@ -124,11 +135,12 @@ if __name__ == '__main__':
 	# simple_planner.goals_sequence.append(Pose2D(0, 0, 0))
 
 	# square const orientation
-	# simple_planner.goals_sequence.append(Pose2D(0, 0, 0))
-	# simple_planner.goals_sequence.append(Pose2D(1, 0, 0))
-	# simple_planner.goals_sequence.append(Pose2D(1, 1, 0))
-	# simple_planner.goals_sequence.append(Pose2D(0, 1, 0))
-	# simple_planner.goals_sequence.append(Pose2D(0, 0, 0))
+	simple_planner.goals_sequence.append(Pose2D(0, 0, 0))
+	simple_planner.goals_sequence.append(Pose2D(0, -1, 0))
+	simple_planner.goals_sequence.append(Pose2D(2, -1, 0))
+	simple_planner.goals_sequence.append(Pose2D(2, 1, 0))
+	simple_planner.goals_sequence.append(Pose2D(0, 1, 0))
+	simple_planner.goals_sequence.append(Pose2D(0, 0, 0))
 
 	# square with rotation
 	# simple_planner.goals_sequence.append(Pose2D(0, 0, 0))
